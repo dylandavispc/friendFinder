@@ -2,15 +2,15 @@
 const friends = require("../data/friends.js")
 
 //Routing
-module.export = function(app) {
+module.exports = function(app) {
     //API GET Requests
-    app.get("/api/friends", function(req, res) {
+    app.get("/api/users", function(req, res) {
         res.json(friends);
     });
     
     //API POST Requests
-    app.post("/api/friends", function(req, res) {
+    app.post("/api/users", function(req, res) {
         friends.push(req.body);
-        console.log("POSTED")
+        console.log("POSTED");
     });
 };

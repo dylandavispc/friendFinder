@@ -41,8 +41,8 @@
 
     <h3>Question 2</h3>
     <div class="form-group">
-        <label for="question1">Badassness?</label>
-        <select class="form-control" id="question1">
+        <label for="question2">Badassness?</label>
+        <select class="form-control" id="question2">
             <option value="null"></option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -54,8 +54,8 @@
 
     <h3>Question 3</h3>
     <div class="form-group">
-        <label for="question1">Badassness?</label>
-        <select class="form-control" id="question1">
+        <label for="question3">Badassness?</label>
+        <select class="form-control" id="question3">
             <option value="null"></option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -66,13 +66,46 @@
     </div>
 
     <div class="text-center">
-        <button id="submitBtn" type="submit" class="btn btn-success btn-lg">Submit</button>
+        <button id="submit" type="submit" class="btn btn-success btn-lg">Submit</button>
     </div>
 
 </body>
 
 <script type="text/javascript">
-    
+
+    $("#submit").on("click", function(event) {
+        event.preventDefault();
+
+        
+        let newFriend = {
+            name: $("#name").val().trim(),
+            img: $("#img").val().trim(),
+            scores: [
+                $("#question1").val(),
+                $("#question2").val(),
+                $("#question3").val()
+            ]
+        };
+
+        console.log(newFriend);
+        
+        //GET method
+        $.ajax({ url: "/api/users", method: "GET" })
+        .then(function(data) {
+
+        })
+
+        //POST method
+        $.post("/api/users", newFriend, function(data) {
+
+            $("#name").val("");
+            $("#img").val("");
+            $("#question1").val("");
+            $("#question2").val("");
+            $("#question3").val("");
+        });
+    });
+
 </script>
 
 </html>
